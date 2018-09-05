@@ -143,6 +143,7 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
                 Utils.CURRENCY_CODE,
                 Utils.CLIENT_PRIVATE_KEY,
                 Utils.SERVER_PUBLIC_KEY,
+                Utils.ORIGINATOR,
                 Utils.isSandbox
         );
         iCard.setKeyIndex(Utils.KEY_INDEX);

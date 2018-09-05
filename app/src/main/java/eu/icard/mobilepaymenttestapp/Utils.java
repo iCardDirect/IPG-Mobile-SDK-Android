@@ -28,6 +28,7 @@ class Utils {
     public static final String CURRENCY_CODE                = Currency.EUR;
     public static final String CURRENCY_NAME                = "EUR";
     public static final String LANGUAGE                     = "EN";
+    public static final String ORIGINATOR                   = "33";
     public static final int KEY_INDEX                       = 1;
     public static final float VERIFICATION_AMOUNT           = 1.00f;
 
