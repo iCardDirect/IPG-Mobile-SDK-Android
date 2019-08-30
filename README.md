@@ -77,6 +77,14 @@ Accepting mobile payments for merchants
   
   Start using iCard Mobile Checkout Android SDK by initializing the setup. Simply fill Originator, MID and secret key provided upon integration and add them to your app's main Activity class. Test settings are ready to use in the test app. Live settings will be kindly provided to you upon integration process.
   
+  Steps to Import Module in Android Studio:
+  
+  1. Go to File -> New -> Import Module
+  2. Select the mobilepaymentsdk.aar from IPG-Mobile-SDK-Android/mobilepaymentssdk folder and click Finish.
+  3. Go to File -> Project Structure -> Dependencies
+  4. Click the (+) icon and select Module Dependency. Select the module and click Ok.
+  5. Open your build.gradle file and check that the module is now listed under dependencies.
+  
 ```Java
 protected void onCreate(Bundle savedInstanceState) {
 ...
