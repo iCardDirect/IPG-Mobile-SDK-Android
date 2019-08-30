@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MobilePaymentTestApp.iml" filepath="$PROJECT_DIR$/MobilePaymentTestApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IPG-Mobile-SDK-Android.iml" filepath="$PROJECT_DIR$/IPG-Mobile-SDK-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mobilepaymentssdk/mobilepaymentssdk.iml" filepath="$PROJECT_DIR$/mobilepaymentssdk/mobilepaymentssdk.iml" />
     </modules>
