@@ -289,7 +289,7 @@ intent.putExtra(ICard.INTENT_EXTRA_CUSTOM_LOGO_RESOURCE, R.drawable.merchang_ban
 Create a new theme that has a theme as a parent, in this example we'll customize the button color:
 
 ```Java
-<style name="AppTheme" parent="Theme.ICard">
+<style name="AppTheme" parent="ICard">
     <item name="colorButtonNormal">#F68121</item>
     <item name="colorAccent">@android:color/white</item>
 </style>
