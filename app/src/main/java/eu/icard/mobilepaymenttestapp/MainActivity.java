@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,6 +21,8 @@ import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -128,37 +129,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_PURCHASE){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == ICard.REQUEST_CODE_PURCHASE) {
             mCartItems.clear();
             mCheckOutBtn.setVisibility(View.GONE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mVersionTextView.getLayoutParams();
             params.bottomMargin = (int) (10 * getResources().getDisplayMetrics().density);
             mVersionTextView.setLayoutParams(params);
-        }
-        else if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_STORE_CARD){
+        } else if (resultCode == RESULT_OK && requestCode == ICard.REQUEST_CODE_STORE_CARD) {
             int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS, -100);
-            if( status == ICard.STATUS_SUCCESS) {
+            if (status == ICard.STATUS_SUCCESS) {
                 StoredCardModel storedCard = data.getParcelableExtra(ICard.INTENT_EXTRA_STORED_CARD);
                 saveStoredCardDataInPreferences(storedCard);
-            }
-            else{
+            } else {
                 Utils.showToastMessage(MainActivity.this, "Operation failed status: " + status);
             }
-        }
-        else if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_UPDATE_CARD){
+        } else if (resultCode == RESULT_OK && requestCode == ICard.REQUEST_CODE_UPDATE_CARD) {
             int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS, -100);
-            if( status == ICard.STATUS_SUCCESS) {
+            if (status == ICard.STATUS_SUCCESS) {
                 StoredCardModel newStoredCard = data.getParcelableExtra(ICard.INTENT_EXTRA_STORED_CARD);
                 String oldCardToken = data.getStringExtra(ICard.INTENT_EXTRA_OLD_CARD_TOKEN);
                 updateStoredCardListInPreferences(newStoredCard, oldCardToken);
-            }
-            else{
+            } else {
                 Utils.showToastMessage(MainActivity.this, "Operation failed status: " + status);
             }
-        }
-        else if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_REFUND){
+        } else if (resultCode == RESULT_OK && requestCode == ICard.REQUEST_CODE_REFUND) {
             int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS, -100);
-            if( status == ICard.STATUS_SUCCESS) {
+            if (status == ICard.STATUS_SUCCESS) {
                 float amount = data.getFloatExtra(ICard.INTENT_EXTRA_AMOUNT, 0.00f);
                 String currency = data.getStringExtra(ICard.INTENT_EXTRA_CURRENCY);
                 String transactionReference = data.getStringExtra(ICard.INTENT_EXTRA_TRANSACTION_REFERENCE);
@@ -173,8 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Utils.addOrderToPreferences(this, orderModel);
 
                 Utils.showToastMessage(MainActivity.this, getString(R.string.refund_successful) + ": " + transactionReference);
-            }
-            else{
+            } else {
                 Utils.showToastMessage(MainActivity.this, "Operation failed status: " + status);
             }
         }

@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -159,9 +160,10 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_PURCHASE){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == ICard.REQUEST_CODE_PURCHASE) {
             int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS, -100);
-            if( status == ICard.STATUS_SUCCESS) {
+            if (status == ICard.STATUS_SUCCESS) {
                 String tranRef = data.getStringExtra(ICard.INTENT_EXTRA_TRANSACTION_REFERENCE);
                 Utils.showToastMessage(this, "Purchase completed\nTransaction reference - " + tranRef);
 
@@ -176,8 +178,7 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
 
                 setResult(RESULT_OK);
                 finish();
-            }
-            else{
+            } else {
                 Utils.showToastMessage(this, "Operation failed status: " + status);
             }
         }
