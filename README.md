@@ -307,7 +307,7 @@ Depending on the styles used in your app, you could customize colors of the foll
 <color name="iCardEditTextColor"      tools:override="true">#444444</color>
 <color name="iCardEdtTitleTextColor"  tools:override="true">#bbbbbb</color>
 <color name="iCardUnderlineColor"     tools:override="true">#bbbbbb</color>
-<color name="iCardsButtonColor"        tools:override="true">#008000</color>
+<color name="iCardsButtonColor"       tools:override="true">#008000</color>
 <color name="iCardButtonTextColor"    tools:override="true">#ffffff</color>
 <color name="iCardTitleTextColor"     tools:override="true">#ffffff</color>
 <color name="iCardBackgroundColor"    tools:override="true">#ffffff</color>
@@ -316,15 +316,37 @@ Depending on the styles used in your app, you could customize colors of the foll
 
 ## Configuring displayed text
   
-  To provide the best user experience, clear activity titles and button labels are already provided. When changing text labels, consider using text that gives a clear intention to user actions.
-  
-  The activity title, button label text and option to show the secure server text can all be configured in the theme:
+  To provide the best user experience, you could customize strings for all languages you want. When changing text labels, consider using text that gives a clear intention to user actions.
   
 ```Java
-<style name="AppTheme" parent="Theme.iCard">
-   <item name="activityTitle">@string/enter_card_details</item>
-   <item name="buttonLabel">@string/pay_now</item>
-</style>
+<resources>
+    <string name="app_name"                     tools:override="true">MobilePaymentsSdk</string>
+    <string name="verifying_dots"               tools:override="true">Verifying...</string>
+    <string name="payment"                      tools:override="true">Payment</string>
+    <string name="card_number"                  tools:override="true">Card number</string>
+    <string name="enter_card_number"            tools:override="true">Enter card number</string>
+    <string name="expiry_date"                  tools:override="true">Expiry date</string>
+    <string name="mm_yy"                        tools:override="true">MM/YY</string>
+    <string name="cvc"                          tools:override="true">CVC</string>
+    <string name="enter_cvc_code"               tools:override="true">Enter CVC code</string>
+    <string name="emboss_name"                  tools:override="true">Cardholder name</string>
+    <string name="enter_emboss_name"            tools:override="true">Enter cardholder name</string>
+    <string name="custom_name"                  tools:override="true">Custom name</string>
+    <string name="enter_custom_name"            tools:override="true">Enter custom name</string>
+    <string name="pay"                          tools:override="true">Pay</string>
+    <string name="operation_failed"             tools:override="true">Operation failed</string>
+    <string name="refund"                       tools:override="true">Refund</string>
+    <string name="invalid_card_details"         tools:override="true">Invalid card details</string>
+    <string name="store_new_card"               tools:override="true">Store new card</string>
+    <string name="store_card"                   tools:override="true">Store card</string>
+    <string name="update_stored_card"           tools:override="true">Update stored card</string>
+    <string name="update_card"                  tools:override="true">Update card</string>
+    <string name="invalid_card_pan"             tools:override="true">Invalid PAN</string>
+    <string name="invalid_card_exp_date"        tools:override="true">Invalid expiry date</string>
+    <string name="invalid_card_cvc"             tools:override="true">Invalid CVC</string>
+    <string name="invalid_card_emboss_name"     tools:override="true">Invalid cardholder name</string>
+    <string name="invalid_card_custom_name"     tools:override="true">Invalid custom name</string>
+</resources>
 ```
 
 
