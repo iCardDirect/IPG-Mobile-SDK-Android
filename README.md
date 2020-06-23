@@ -84,7 +84,12 @@ Accepting mobile payments for merchants
   3. Go to File -> Project Structure -> Dependencies
   4. Click the (+) icon and select Module Dependency. Select the module and click Ok.
   5. Open your build.gradle file and check that the module is now listed under dependencies.
-  
+  6. In your build.gradle file add spongycastle library implementation under dependencies.
+
+```Java
+implementation 'com.madgag.spongycastle:prov:1.54.0.0'
+```
+
 ```Java
 protected void onCreate(Bundle savedInstanceState) {
 ...
@@ -348,5 +353,4 @@ Depending on the styles used in your app, you could customize colors of the foll
     <string name="invalid_card_custom_name"     tools:override="true">Invalid custom name</string>
 </resources>
 ```
-
 
