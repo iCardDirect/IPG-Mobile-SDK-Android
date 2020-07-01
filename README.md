@@ -96,11 +96,11 @@ protected void onCreate(Bundle savedInstanceState) {
  ICard iCard = ICard.getInstance();
  iCard.init(
             “112”,                /*MID*/
-            33,               	  /*Originator ID*/
             “EUR”,                /*currency ISO code*/
             “MIICXAIBAAKBg ...”,  /*client private key*/
             ”MIIBkDCB+q ...”,     /*server public key*/
-            true,                 /*is Sandbox*/
+            33,               	  /*Originator ID*/
+            true                  /*is Sandbox*/
  );
  iCard.setKeyIndex(1); 
  iCard.setLanguage(“EN”);
