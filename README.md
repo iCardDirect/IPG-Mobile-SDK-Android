@@ -84,10 +84,11 @@ Accepting mobile payments for merchants
   3. Go to File -> Project Structure -> Dependencies
   4. Click the (+) icon and select Module Dependency. Select the module and click Ok.
   5. Open your build.gradle file and check that the module is now listed under dependencies.
-  6. In your build.gradle file add spongycastle library implementation under dependencies.
+  6. In your build.gradle file add spongycastle and appache common libraries implementation under dependencies.
 
 ```Java
 implementation 'com.madgag.spongycastle:prov:1.54.0.0'
+implementation 'org.apache.commons:commons-lang3:3.0'
 ```
 
 ```Java
