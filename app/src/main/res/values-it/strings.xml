@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_completed_successful">Operazione completata con successo.</string>
+    <string name="operation_failed_please_contact_us_for_more_details">Operazione fallita. Per favore contattaci per maggiori informazioni.</string>
+    <string name="operation_failed_please_contact_your_card_issuer_for_more_details">Operazione non riuscita. Per favore contatta l\'emittente della carta per maggiori informazioni.</string>
+    <string name="insufficient_funds_please_contact_your_card_issuer">Fondi insufficienti. Per favore contatta l\'emittente della carta per maggiori informazioni.</string>
+    <string name="operation_failed_please_check_your_card_details">Operazione non riuscita. Verifica i dettagli della carta e riprova o contatta l\'emittente della carta per ulteriori informazioni.</string>
+    <string name="invalid_amount_please_try_again_or_contact_your_card_issuer">Importo non valido. Riprova o contatta l\'emittente della carta per ulteriori dettagli.</string>
+    <string name="secure_3d_verification_failed">Verifica 3D Secure non riuscita. Riprova o contatta l\'emittente della carta per i dettagli.</string>
+    <string name="operation_failed_please_try_again">Operazione non riuscita. Per favore prova di nuovo.</string>
+    <string name="operation_cancelled">Operazione cancellata.</string>
+    <string name="transaction_reference">Riferimento transazione</string>
+    <string name="amount">Importo</string>
+    <string name="refund">Rimborso</string>
+    <string name="cancel">Annulla</string>
+    <string name="order_id">ID ordine</string>
+    <string name="send">Inviare</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="settings">Impostazioni</string>
+    <string name="store_new_card">Memorizza una nuova carta</string>
+</resources>

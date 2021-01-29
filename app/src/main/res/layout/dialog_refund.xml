@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android               ="http://schemas.android.com/apk/res/android"
+    android:layout_width        ="match_parent"
+    android:layout_height       ="match_parent"
+    xmlns:app                   ="http://schemas.android.com/apk/res-auto"
+    android:paddingTop          ="20dp"
+    android:paddingStart        ="16dp"
+    android:paddingEnd          ="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style                               ="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id                          ="@+id/tranRefLayout"
+        android:layout_width                ="0dp"
+        android:layout_height               ="wrap_content"
+        android:hint                        ="@string/transaction_reference"
+        app:layout_constraintTop_toTopOf    ="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf    ="parent"
+        app:boxCornerRadiusBottomStart      ="23dp"
+        app:boxCornerRadiusBottomEnd        ="23dp"
+        app:boxCornerRadiusTopEnd           ="23dp"
+        app:boxCornerRadiusTopStart         ="23dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id              ="@+id/tranReferenceEdt"
+            android:layout_width    ="match_parent"
+            android:layout_height   ="wrap_content"
+            android:inputType       ="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style                               ="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id                          ="@+id/amountLayout"
+        android:layout_width                ="0dp"
+        android:layout_height               ="wrap_content"
+        android:layout_marginTop            ="10dp"
+        android:hint                        ="@string/amount"
+        app:suffixText                      ="EUR"
+        app:layout_constraintTop_toBottomOf ="@id/tranRefLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf    ="parent"
+        app:boxCornerRadiusBottomStart      ="23dp"
+        app:boxCornerRadiusBottomEnd        ="23dp"
+        app:boxCornerRadiusTopEnd           ="23dp"
+        app:boxCornerRadiusTopStart         ="23dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id              ="@+id/amountEdt"
+            android:layout_width    ="match_parent"
+            android:layout_height   ="wrap_content"
+            android:inputType       ="numberDecimal"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style                               ="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id                          ="@+id/orderIdLayout"
+        android:layout_width                ="0dp"
+        android:layout_height               ="wrap_content"
+        android:layout_marginTop            ="10dp"
+        android:hint                        ="@string/order_id"
+        app:layout_constraintTop_toBottomOf ="@id/amountLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf    ="parent"
+        app:boxCornerRadiusBottomStart      ="23dp"
+        app:boxCornerRadiusBottomEnd        ="23dp"
+        app:boxCornerRadiusTopEnd           ="23dp"
+        app:boxCornerRadiusTopStart         ="23dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id              ="@+id/orderIdEdt"
+            android:layout_width    ="match_parent"
+            android:layout_height   ="wrap_content"
+            android:inputType       ="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        style                                   ="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id                              ="@+id/refundBtn"
+        android:layout_width                    ="wrap_content"
+        android:layout_height                   ="wrap_content"
+        android:layout_marginTop                ="20dp"
+        android:text                            ="@string/refund"
+        app:layout_constraintEnd_toEndOf        ="parent"
+        app:layout_constraintTop_toBottomOf     ="@id/orderIdLayout"/>
+
+    <com.google.android.material.button.MaterialButton
+        style                                   ="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id                              ="@+id/cancelBtn"
+        android:layout_width                    ="wrap_content"
+        android:layout_height                   ="wrap_content"
+        android:layout_marginEnd                ="10dp"
+        android:layout_marginTop                ="20dp"
+        android:text                            ="@string/cancel"
+        android:textColor                       ="@color/lightGrayColor"
+        app:layout_constraintEnd_toStartOf      ="@id/refundBtn"
+        app:layout_constraintTop_toBottomOf     ="@id/orderIdLayout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

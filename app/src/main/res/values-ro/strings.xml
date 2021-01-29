@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_completed_successful">Operațiunea s-a încheiat cu succes.</string>
+    <string name="operation_failed_please_contact_us_for_more_details">Operațiunea a eșuat. Vă rugăm să ne contactați pentru mai multe detalii.</string>
+    <string name="operation_failed_please_contact_your_card_issuer_for_more_details">Операцията е неуспешна. Моля, свържи се с издателя на твоята карта за повече информация.</string>
+    <string name="insufficient_funds_please_contact_your_card_issuer">Fonduri insuficiente. Vă rugăm să contactați emitentul cardului pentru mai multe informații.</string>
+    <string name="operation_failed_please_check_your_card_details">Operațiunea a eșuat. Vă rugăm să verificați detaliile cardului dvs. și încercați din nou sau contactați emitenul cardului dvs. pentru mai multe informații.</string>
+    <string name="invalid_amount_please_try_again_or_contact_your_card_issuer">Suma nevalidă. Vă rugăm să încercați din nou sau contactați emitentul cardului dvs. pentru mai multe detalii.</string>
+    <string name="secure_3d_verification_failed">Verificarea 3D Secure nu a reușit. Încercați din nou sau contactați emitentul cardului pentru detalii.</string>
+    <string name="operation_failed_please_try_again">Operațiunea a eșuat. Vă rugăm să încercați din nou.</string>
+    <string name="operation_cancelled">Operațiunea a fost anulată.</string>
+    <string name="transaction_reference">Referința tranzacției</string>
+    <string name="amount">Suma</string>
+    <string name="refund">Rambursare</string>
+    <string name="cancel">Anulați</string>
+    <string name="order_id">ID-ul comenzii</string>
+    <string name="send">Trimite</string>
+    <string name="dark_mode">Mod întunecat</string>
+    <string name="settings">Setări</string>
+    <string name="store_new_card">Stocați un card nou</string>
+</resources>

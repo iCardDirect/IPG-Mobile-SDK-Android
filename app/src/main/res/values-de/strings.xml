@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Status messages
+    <string name="operation_completed_successful">Operation erfolgreich abgeschlossen.</string>
+    <string name="operation_failed_please_contact_us_for_more_details">Operation fehlgeschlagen. Bitte kontaktieren Sie uns für weitere Informationen.</string>
+    <string name="operation_failed_please_contact_your_card_issuer_for_more_details">Operation fehlgeschlagen. Bitte kontaktieren Sie Ihren Kartenaussteller für weitere Informationen.</string>
+    <string name="insufficient_funds_please_contact_your_card_issuer">Unzureichende Mittel. Bitte wenden Sie sich an Ihren Kartenaussteller, um weitere Informationen zu erhalten.</string>
+    <string name="operation_failed_please_check_your_card_details">Operation fehlgeschlagen. Bitte überprüfen Sie Ihre Kartendaten und versuchen Sie es erneut oder wenden Sie sich an Ihren Kartenaussteller, um weitere Informationen zu erhalten.</string>
+    <string name="invalid_amount_please_try_again_or_contact_your_card_issuer">Ungültige Menge. Bitte versuchen Sie es erneut oder wenden Sie sich an Ihren Kartenaussteller, um weitere Informationen zu erhalten.</string>
+    <string name="secure_3d_verification_failed">3D Secure-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut oder wenden Sie sich an Ihren Kartenaussteller, um weitere Informationen zu erhalten.</string>
+    <string name="operation_failed_please_try_again">Operation fehlgeschlagen. Bitte versuche es erneut.</string>
+    <string name="operation_cancelled">Operation fehlgeschlagen.</string>
+    <string name="transaction_reference">Transaktionsreferenz</string>
+    <string name="amount">Betrag</string>
+    <string name="refund">Rückerstattung</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="order_id">Bestellungs-ID</string>
+    <string name="send">Schicken</string>
+    <string name="dark_mode">Dunkler Modus</string>
+    <string name="settings">Einstellungen</string>
+    <string name="store_new_card">Neue Karte speichern</string>
+</resources>

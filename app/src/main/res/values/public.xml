@@ -1,0 +1,4 @@
+<resources>
+    <public name="app_name" type="string"/>
+    <public name="aaaa" type="string"/>
+</resources>

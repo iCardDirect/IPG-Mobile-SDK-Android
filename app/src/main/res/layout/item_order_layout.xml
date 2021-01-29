@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="eu.icard.androidmobilepaymentsipgsdk.utils.ExtensionsKt"/>
+        <import type="eu.icard.androidmobilepaymentsipgsdk.utils.Utils"/>
+
+        <variable
+            name    ="orderModel"
+            type    ="eu.icard.androidmobilepaymentsipgsdk.model.OrderModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android           ="http://schemas.android.com/apk/res/android"
+        android:orientation     ="horizontal"
+        android:layout_width    ="match_parent"
+        android:layout_height   ="wrap_content"
+        android:gravity         ="center_vertical"
+        android:paddingTop      ="10dp"
+        android:paddingBottom   ="10dp"
+        android:paddingLeft     ="16dp"
+        android:paddingRight    ="16dp">
+
+        <TextView
+            android:id                          ="@+id/transactionTypeTxt"
+            android:layout_width                ="0dp"
+            android:layout_height               ="wrap_content"
+            android:textSize                    ="16sp"
+            android:textStyle                   ="bold"
+            android:textColor                   ="#000000"
+            android:text                        ="@{orderModel.transactionType}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf    ="parent"
+            app:layout_constraintTop_toTopOf    ="parent"/>
+
+        <TextView
+            android:id                          ="@+id/orderIdLabelTxt"
+            android:layout_width                ="wrap_content"
+            android:layout_height               ="wrap_content"
+            android:textSize                    ="13sp"
+            android:textColor                   ="#777777"
+            android:text                        ="Order ID:  "
+            app:layout_constraintTop_toBottomOf ="@id/transactionTypeTxt"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id                          ="@+id/orderId"
+            android:layout_width                ="wrap_content"
+            android:layout_height               ="wrap_content"
+            android:textIsSelectable            ="true"
+            android:textSize                    ="13sp"
+            android:textStyle                   ="bold"
+            android:textColor                   ="#000000"
+            android:text                        ="@{orderModel.orderId}"
+            app:layout_constraintStart_toEndOf  ="@id/orderIdLabelTxt"
+            app:layout_constraintTop_toTopOf    ="@id/orderIdLabelTxt"/>
+
+        <TextView
+            android:id                              ="@+id/tranRefLabelTxt"
+            android:layout_width                    ="wrap_content"
+            android:layout_height                   ="wrap_content"
+            android:textSize                        ="13sp"
+            android:textColor                       ="#777777"
+            android:text                            ="Transaction ref:  "
+            app:layout_constraintStart_toStartOf    ="parent"
+            app:layout_constraintTop_toBottomOf     ="@id/orderIdLabelTxt"/>
+
+        <TextView
+            android:id                          ="@+id/transactionReferenceTxt"
+            android:layout_width                ="wrap_content"
+            android:layout_height               ="wrap_content"
+            android:textIsSelectable            ="true"
+            android:textSize                    ="13sp"
+            android:textStyle                   ="bold"
+            android:textColor                   ="#000000"
+            android:text                        ="@{orderModel.tranRef}"
+            app:layout_constraintStart_toEndOf  ="@id/tranRefLabelTxt"
+            app:layout_constraintTop_toTopOf    ="@id/tranRefLabelTxt"/>
+
+        <TextView
+            android:id                      ="@+id/order_amount"
+            android:layout_width            ="wrap_content"
+            android:layout_height           ="wrap_content"
+            android:textSize                ="16sp"
+            android:textStyle               ="bold"
+            android:textColor               ="#000000"
+            android:text                    ="@{ExtensionsKt.formatAmount(orderModel.amount)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id                          ="@+id/order_date"
+            android:layout_width                ="wrap_content"
+            android:layout_height               ="wrap_content"
+            android:textSize                    ="13sp"
+            android:textColor                   ="#777777"
+            android:text                        ="@{ExtensionsKt.formatDate(orderModel.date, Utils.DATE_FORMAT)}"
+            app:layout_constraintEnd_toEndOf    ="parent"
+            app:layout_constraintTop_toBottomOf ="@id/order_amount"/>
+
+        <TextView
+            android:id                          ="@+id/orderTimeTxt"
+            android:layout_width                ="wrap_content"
+            android:layout_height               ="wrap_content"
+            android:textSize                    ="13sp"
+            android:textColor                   ="#777777"
+            android:text                        ="@{ExtensionsKt.formatDate(orderModel.date, Utils.TIME_FORMAT)}"
+            app:layout_constraintEnd_toEndOf    ="parent"
+            app:layout_constraintTop_toBottomOf ="@id/order_date"/>
+
+        <View
+            android:layout_width                        ="0dp"
+            android:layout_height                       ="0.5dp"
+            android:layout_marginTop                    ="20dp"
+            android:background                          ="@color/lightGrayColor"
+            app:layout_constraintTop_toBottomOf         ="@id/orderTimeTxt"
+            app:layout_constraintStart_toStartOf        ="parent"
+            app:layout_constraintEnd_toEndOf            ="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

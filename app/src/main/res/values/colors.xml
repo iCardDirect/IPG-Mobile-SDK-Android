@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources
     xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary">#008000</color>
-    <color name="colorPrimaryDark">#006400</color>
-    <color name="colorAccent">#006400</color>
-
+    <color name="colorPrimary">#2799D7</color>
+    <color name="colorPrimaryDark">#2799D7</color>
+    <color name="colorAccent">#2799D7</color>
+    <color name="darkGrayColor">#3F3F3F</color>
+    <color name="lightGrayColor">#888888</color>
     <color name="white" tools:override="true">#FFFFFF</color>
-    <color name="iCardFocusedColor" tools:override="true">#ffa500</color>
-    <color name="iCardEditTextHintColor" tools:override="true">#9c9c9c</color>
-    <color name="iCardEditTextColor" tools:override="true">#444444</color>
-    <color name="iCardEdtTitleTextColor" tools:override="true">#bbbbbb</color>
-    <color name="iCardUnderlineColor" tools:override="true">#bbbbbb</color>
-    <color name="iCardButtonColor" tools:override="true">#008000</color>
+    <color name="main_green">#008000</color>
+    <color name="dark_red">#720A00</color>
 
 </resources>

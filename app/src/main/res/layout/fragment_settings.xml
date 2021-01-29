@@ -1,0 +1,105 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android               ="http://schemas.android.com/apk/res/android"
+    xmlns:tools                 ="http://schemas.android.com/tools"
+    android:layout_width        ="match_parent"
+    android:layout_height       ="match_parent"
+    xmlns:app                   ="http://schemas.android.com/apk/res-auto"
+    android:background          ="@color/white"
+    android:paddingTop          ="20dp"
+    android:paddingStart        ="16dp"
+    android:paddingEnd          ="16dp"
+    android:clickable           ="true"
+    tools:context               ="eu.icard.androidmobilepaymentsipgsdk.main.SettingsFragment"
+    android:focusable           ="true">
+
+    <androidx.appcompat.widget.SwitchCompat
+       android:id                           ="@+id/darkModeSwitch"
+       android:layout_width                 ="0dp"
+       android:layout_height                ="48dp"
+       android:text                         ="@string/dark_mode"
+       app:layout_constraintTop_toTopOf     ="parent"
+       app:layout_constraintStart_toStartOf ="parent"
+       app:layout_constraintEnd_toEndOf     ="parent"/>
+
+    <TextView
+        android:id                          ="@+id/languageLabelTxt"
+        android:layout_width                ="0dp"
+        android:layout_height               ="48dp"
+        android:gravity                     ="center_vertical"
+        android:text                        ="@string/language"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf  ="@id/languageTxt"
+        app:layout_constraintTop_toBottomOf ="@id/darkModeSwitch"/>
+
+    <TextView
+        android:id                              ="@+id/languageTxt"
+        android:layout_width                    ="wrap_content"
+        android:layout_height                   ="0dp"
+        android:text                            ="English"
+        android:textColor                       ="@color/black"
+        android:gravity                         ="center_vertical"
+        app:layout_constraintEnd_toEndOf        ="parent"
+        app:layout_constraintTop_toTopOf        ="@id/languageLabelTxt"
+        app:layout_constraintBottom_toBottomOf  ="@id/languageLabelTxt"/>
+
+    <TextView
+        android:id                          ="@+id/fontLabelTxt"
+        android:layout_width                ="0dp"
+        android:layout_height               ="48dp"
+        android:gravity                     ="center_vertical"
+        android:text                        ="@string/font"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf  ="@id/fontTxt"
+        app:layout_constraintTop_toBottomOf ="@id/languageLabelTxt"/>
+
+    <TextView
+        android:id                              ="@+id/fontTxt"
+        android:layout_width                    ="wrap_content"
+        android:layout_height                   ="wrap_content"
+        android:text                            ="Carossoft"
+        android:textColor                       ="@color/black"
+        app:layout_constraintEnd_toEndOf        ="parent"
+        app:layout_constraintTop_toTopOf        ="@id/fontLabelTxt"
+        app:layout_constraintBottom_toBottomOf  ="@id/fontLabelTxt"/>
+
+    <TextView
+        android:id                          ="@+id/colorAccentLabelTxt"
+        android:layout_width                ="0dp"
+        android:layout_height               ="48dp"
+        android:gravity                     ="center_vertical"
+        android:text                        ="@string/color_accent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf  ="@id/colorAccentTxt"
+        app:layout_constraintTop_toBottomOf ="@id/fontLabelTxt"/>
+
+    <TextView
+        android:id                              ="@+id/colorAccentTxt"
+        android:layout_width                    ="wrap_content"
+        android:layout_height                   ="wrap_content"
+        android:text                            ="Blue"
+        android:textColor                       ="@color/black"
+        app:layout_constraintEnd_toEndOf        ="parent"
+        app:layout_constraintTop_toTopOf        ="@id/colorAccentLabelTxt"
+        app:layout_constraintBottom_toBottomOf  ="@id/colorAccentLabelTxt"/>
+
+    <TextView
+        android:id                          ="@+id/textColorLabelTxt"
+        android:layout_width                ="0dp"
+        android:layout_height               ="48dp"
+        android:gravity                     ="center_vertical"
+        android:text                        ="@string/text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf  ="@id/textColorTxt"
+        app:layout_constraintTop_toBottomOf ="@id/colorAccentLabelTxt"/>
+
+    <TextView
+        android:id                              ="@+id/textColorTxt"
+        android:layout_width                    ="wrap_content"
+        android:layout_height                   ="wrap_content"
+        android:text                            ="Red"
+        android:textColor                       ="@color/black"
+        app:layout_constraintEnd_toEndOf        ="parent"
+        app:layout_constraintTop_toTopOf        ="@id/textColorLabelTxt"
+        app:layout_constraintBottom_toBottomOf  ="@id/textColorLabelTxt"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

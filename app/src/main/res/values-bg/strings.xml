@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Status messages
+    <string name="operation_completed_successful">Операцията е успешна.</string>
+    <string name="operation_failed_please_contact_us_for_more_details">Операцията е неуспешна. Моля, свържи се с нашия Център за обслужване на клиенти.</string>
+    <string name="operation_failed_please_contact_your_card_issuer_for_more_details">Операцията е неуспешна. Моля, свържи се с издателя на твоята карта за повече информация.</string>
+    <string name="insufficient_funds_please_contact_your_card_issuer">Недостатъчна наличност. Моля, свържи се с издателя на твоята карта за повече информация.</string>
+    <string name="operation_failed_please_check_your_card_details">Операцията е неуспешна. Моля, провери детайлите и опитай отново или се свържи с издателя на твоята карта за повече информация.</string>
+    <string name="invalid_amount_please_try_again_or_contact_your_card_issuer">Невалидна сума. Моля, опитай отново или се свържи с издателя на твоята карта за повече информация.</string>
+    <string name="secure_3d_verification_failed">Неуспешна 3D Secure проверка. Моля, опитай отново или се свържи с издателя на твоята карта за повече информация.</string>
+    <string name="operation_failed_please_try_again">Операцията е неуспешна. Моля, опитай отново.</string>
+    <string name="operation_cancelled">Операцията е отказана.</string>
+    <string name="transaction_reference">Референция на трансакцията</string>
+    <string name="amount">Сума</string>
+    <string name="refund">Възстановяване</string>
+    <string name="cancel">Отказ</string>
+    <string name="order_id">Номер на поръчка</string>
+    <string name="send">Изпрати</string>
+    <string name="dark_mode">Тъмен режим</string>
+    <string name="settings">Настройки</string>
+    <string name="store_new_card">Добави нова карта</string>
+</resources>
