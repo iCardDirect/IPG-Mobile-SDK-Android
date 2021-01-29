@@ -13,7 +13,11 @@ Accepting mobile payments for merchants
   
   * [Setup](#setup)
   
-  * [Perform a Payment](#perform-a-payment)
+  * [Initialization](#initialization)
+  
+  * [Make a payment with a new or already stored card](#make-a-payment-with-a-new-or-already-stored-card)
+  
+  * [Make a payment and store card](#make-a-payment-and-store-card)
   
   * [Add a Card](#add-a-card)
   
@@ -67,9 +71,10 @@ Accepting mobile payments for merchants
   
   ## Requirements
   
-  * Android Studio 2.0 or higher
-  * Android SDK Build Tools 25.0.0
-  * The minSdkVersion set to 16 (Jelly Bean) or higher
+  * Android Studio 4.0 or higher
+  * Android SDK Build Tools 30.0.2
+  * Kotlin version 1.3 or higher
+  * The minSdkVersion set to 19 (KitKat) or higher
   * Latest Android Support Repository
   * Latest Android Support Library
 
@@ -77,281 +82,161 @@ Accepting mobile payments for merchants
   
   Start using iCard Mobile Checkout Android SDK by initializing the setup. Simply fill Originator, MID and secret key provided upon integration and add them to your app's main Activity class. Test settings are ready to use in the test app. Live settings will be kindly provided to you upon integration process.
   
-  #### Steps to Import Module in Android Studio:
-  
-  1. Go to File -> New -> Import Module
-  2. Select the mobilepaymentsdk.aar from IPG-Mobile-SDK-Android/mobilepaymentssdk folder and click Finish.
-  3. Go to File -> Project Structure -> Dependencies
-  4. Click the (+) icon and select Module Dependency. Select the module and click Ok.
-  5. Open your build.gradle file and check that the module is now listed under dependencies.
-  6. In your build.gradle file add spongycastle and appache common libraries implementation under dependencies.
+  1. Add following code into the Mobile App project configuration in Build.Gradle:
+      ```Kotlin 
+      maven { url 'https://icarddirect.android.sdk.icard.com/artifactory/iCardDirectRepository'}  
+      ```
+  2. Add following code into the Mobile App project configuration in App Build.Gradle
+      ```Kotlin
+      implementation 'com.icard.icarddirect:mobilepaymentssdk:1.3.5'  
+      ```
 
-```Java
-implementation 'com.madgag.spongycastle:prov:1.54.0.0'
-implementation 'org.apache.commons:commons-lang3:3.0'
-```
+  ## Initialization
 
-```Java
-protected void onCreate(Bundle savedInstanceState) {
-...
- ICard iCard = ICard.getInstance();
- iCard.init(
-            “112”,                /*MID*/
-            “EUR”,                /*currency ISO code*/
-            “MIICXAIBAAKBg ...”,  /*client private key*/
-            ”MIIBkDCB+q ...”,     /*server public key*/
-            33,               	  /*Originator ID*/
-            true                  /*is Sandbox*/
- );
- iCard.setKeyIndex(1); 
- iCard.setLanguage(“EN”);
-
-...
-}
+```Kotlin
+ICardDirectSDK.initialize( 
+                            context           = this,
+                            mid               = “112”,
+                            currency          = “EUR”,
+                            clientPrivateKey  = “MIICXAIBAAKBg ...”,
+                            icardPublicKey    = ”MIIBkDCB+q ...”,
+                            originator        = 33,
+                            backendUrl        = "",
+                            taxUrl            = "",
+                            keyIndex          = 1,
+                            isSandbox         = true 
+                            language          = “en”  // Available languages en, bg, de, es, it, nl, ro. Translation is managed by SDK.
+)
 ```
 
 The SDK allows further configuration by using the existing settings. These are the options:
   * Supported card networks – Allows you to determine the accepted card networks when using your app. The default value includes Visa, Visa Electron, MasterCard, Maestro and VPay.
   * Address Verification Service (AVS) – You will be able to capture the consumer’s country and postcode as an additional security layer.
   
-  ## Perform a Payment
+## Make a payment with a new or already stored card
     
-    Create an intent for the Purchase Activity with the required:
- 
-```Java
-ArrayList<CartItem> mIPGCartItems;
-public void onPayBtnClick(View view) {
-...
-  Intent intent = new Intent(this, PurchaseActivity.class);
-  intent.putExtra(ICard.INTENT_EXTRA_CART_ITEMS , mIPGCartItems);
-  intent.putExtra(ICard.INTENT_EXTRA_ORDER_ID   , “12345678”);
-  startActivityForResult(intent, ICard.REQUEST_CODE_PURCHASE);
-...
-}
+```Kotlin
+  ICardDirectSDK.purchase(
+        context           = requireContext(),
+        orderId           = orderId,
+        ipgCartItems      = ipgCartItems,
+        cardToken         = storedCard?.cardToken,  // optional if you pay with stored card
+        purchaseListener  = object : ICardDirectSDK.PurchaseListener {
+            override fun purchaseSuccess( transactionReference: String, amount: Double, currency: String ) {
+                /*your code here*/
+            }
+            override fun errorWithPurchase(status: Int) {
+                /*your code here*/
+            }
+        }
+    )
 ```
 Note: Please make sure that you are using a unique Order ID.
 
-  In your calling Activity, override the onActivityResult method to receive a reference of the payment card, customer ID and transaction reference from Performing a Payment:
-  
-```Java
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    if( resultCode == RESULT_OK && requestCode == ICard.REQUEST_CODE_PURCHASE ) {
-      int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS, ICard.STATUS_INTERNAL_API_ERROR);
-        
-      if( status == ICard.STATUS_SUCCESS)
-        String tranRef = data.getStringExtra(ICard.INTENT_EXTRA_TRANSACTION_REFERENCE);
-    }
-}
-```
-  
+## Make a payment and store card
+ ```Kotlin
+         ICardDirectSDK.storeCardAndPurchase(
+                context                       = this,
+                orderId                       = orderId,
+                ipgCartItems                  = ipgCartItems,
+                storeCardAndPurchaseListener  = object : StoreCardAndPurchaseListener {
+                    override fun storeCardAndPurchaseSuccess(storedCard: StoredCard, transactionReference: String, amount: Double, currency: String) {
+                        /*your code here*/
+                    }
+
+                    override fun errorWithStoreCardAndPurchase(status: Int) {
+                        /*your code here*/
+                    }
+                }
+        )
+ ```
+ Note: Please make sure that you are using a unique Order ID.
+ 
 ## Add a Card
 
- Create an Intent for the StoreCardActivity with the required Intent extras:
-
-```Java
-public void onAddCardBtnClick(View view) {
-...
-  Intent intent = new Intent(this, StoreCardActivity.class);
-  intent.putExtra(ICard.INTENT_EXTRA_VERIFICATION_AMOUNT, 0.00 /*verification amount*/);
-  startActivityForResult(intent, ICard.REQUEST_CODE_STORE_CARD);
-...
-}
-```
-  
- Note: Please make sure that you are using a unique Reference ID for each different consumer.
- 
- In your calling Activity, override the onActivityResult method to receive a card reference for the linked card:
- 
- ```Java
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-  if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_STORE_CARD){
-    int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS,  ICard.STATUS_INTERNAL_API_ERROR);
-   
-    if( status == ICard.STATUS_SUCCESS)
-      StoredCardModel storedCard = data.getParcelableExtra(ICard.INTENT_EXTRA_STORED_CARD);
-  }
-}
- ```
- 
- ## Perform a Payment with stored card
- 
- Create an Intent for the PurchaseActivity with the required Intent extras:
- 
-```Java
-public void onPayWithCardBtnClick(View view) {
-...
-  Intent intent = new Intent(this, PurchaseActivity.class);
-  intent.putExtra(ICard.INTENT_EXTRA_CART_ITEMS , mIPGCartItems);
-  intent.putExtra(ICard.INTENT_EXTRA_ORDER_ID   , “12345678”);
-  intent.putExtra(ICard.INTENT_EXTRA_CARD_TOKEN , “card token”);
-  startActivityForResult(intent, ICard.REQUEST_CODE_PURCHASE);
-...
-}
+ ```Kotlin
+ICardDirectSDK.storeCard(
+                context             = this,
+                orderId             = orderId,
+                storeCardListener   = object : ICardDirectSDK.StoreCardListener {
+                    override fun storeCardSuccess(storedCard: StoredCard) {
+                        /*your code here*/
+                    }
+    
+                    override fun errorWithStoreCard(status: Int) {
+                        /*your code here*/
+                    }
+                }
+            )
 ```
 Note: Please make sure that you are using a unique Order ID.
-
-In your calling Activity, override the onActivityResult method to receive a reference of the payment card, customer ID and transaction reference from Performing a Payment:
-
-```Java
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-...
-  if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_PURCHASE) {
-    int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS,  ICard.STATUS_INTERNAL_API_ERROR);
-        
-      if( status == ICard.STATUS_SUCCESS)
-        String tranRef = data.getStringExtra(ICard.INTENT_EXTRA_TRANSACTION_REFERENCE);
-    }
-...
-}
-```
+ 
 
  ## Perform a Refund
 
-Refunding a payment requires that you have the transactionRef of the payment transaction. Check that you have initialized the SDK before attempting to perform a refund.
+Refunding a payment requires that you have the transactionRef of the payment transaction.
 
-Create an Intent for the RefundActivity with the required Intent extras:
+```Kotlin
+ICardDirectSDK.refundTransaction(transactionRef, amount, orderId, object :
+            ICardDirectSDK.RefundListener {
+            override fun refundSuccess(transactionReference: String, amount: Double, currency: String) {
+              /*your code here*/
+            }
 
-```Java
-public void onRefundBtnClick(View view) {
-...
-  Intent intent = new Intent(this, RefundActivity.class);
-  intent.putExtra(ICard.INTENT_EXTRA_TRANSACTION_REFERENCE  , "transactionRef");
-  intent.putExtra(ICard.INTENT_EXTRA_AMOUNT                 , 10.00);
-
-  if( !orderId.equalsIgnoreCase(""))
-    intent.putExtra(ICard.INTENT_EXTRA_ORDER_ID, orderId);
-
-  startActivityForResult(intent, ICard.REQUEST_CODE_REFUND);
-...
-}
+            override fun errorWithRefund(status: Int) {
+              /*your code here*/
+            }
+        })
 ```
 Note: Please make sure that you are using the correct Transaction Reference ID for the transaction that you want to be refunded.
 
-In your calling Activity, override the onActivityResult method to receive a transaction reference of the operation and the reference of the original transaction:
-
-```Java
-@Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-...
-  if( resultCode == RESULT_OK  && requestCode == ICard.REQUEST_CODE_REFUND){
-    int status = data.getIntExtra(ICard.INTENT_EXTRA_STATUS,  ICard.STATUS_INTERNAL_API_ERROR);
-    
-    if( status == ICard.STATUS_SUCCESS) {
-      float amount                = data.getFloatExtra(ICard.INTENT_EXTRA_AMOUNT, 0.00f);
-      String currency             = data.getStringExtra(ICard.INTENT_EXTRA_CURRENCY);
-      String transactionReference = data.getStringExtra(ICard.INTENT_EXTRA_TRANSACTION_REFERENCE);
-    }
-  }
-...
-}
-```
-
  ## Check transaction status
  
- You can choose between the transaction types of Purchase or Refund and to send the order ID of which transaction status needed to be checked. The method will retrieve the transaction type, order ID, transaction status and the transaction reference:
+ The method will retrieve the transaction status and the transaction reference:
  
-```Java
-IPGGetTransactionStatus ipgGetTransactionStatus = new IPGGetTransactionStatus();
-ipgGetTransactionStatus.setOrderId(orderId);
-ipgGetTransactionStatus.setTxtType(txnType);
-ipgGetTransactionStatus.setOnCommandCompleteListener(new IPGGetTransactionStatus.OnCommandCompleteListener() {
-    @Override
-    public void onCommandComplete(final int transactionStatus, final String transactionReference) { }
+```Kotlin
+ICardDirectSDK.getTransactionStatus(orderId, object :
+            ICardDirectSDK.GetTransactionStatusListener {
+              override fun transactionStatusSuccess( transactionStatus: Int, transactionReference: String ) {
+                  /*your code here*/
+              }
 
-    @Override
-    public void onError(final int status) { }
-});
-
-ipgGetTransactionStatus.sendRequest();
+              override fun errorWithTransactionStatus(status: Int) {
+                /*your code here*/
+              }
+            })
 ```
+Note: Please make sure that you are using a correct Order ID.
 
 # UI customization
 
 Use iCard Mobile Checkout Android SDK UI components for a frictionless checkout in your app. Minimize your PCI scope with a UI that can be themed to match your brand colors.
 
-Built-in features include quick data entry, optional security checks and fraud prevention that let you focus on developing other areas of your app.
-
-The iCard Mobile Checkout Android SDK supports a range of UI customization options to allow you to match payment screen appearance to your app's branding.
-
-## Hide custom name field
-
-Pass true in the intent opening StoreCardActivity or PurchaseActivity if you don't want to show 'Custom name' field like this:
-```Java
-intent.putExtra(ICard.INTENT_EXTRA_WITHOUT_CUSTOM_NAME, true);
+```Kotlin
+ICardDirectSDK.setupUISettings(
+          isDarkMode      = true/false,
+          font            = ICardDirectSDK.FONT_CAROSSOFT_LIGHT,
+          buttonColor     = R.color.YOUR_COLOUR,
+          buttonTextColor = R.color.YOUR_COLOUR,
+          merchantLogo    = null
+          toolbarColor    = R.color.YOUR_COLOUR,
+          toolbarTextColor= R.color.YOUR_COLOUR
+)
 ```
 
-## Set custom banner
+where the available fonts are
 
-There is a possibility to set your merchant brand logo or banner in the action bar on StoreCardActivity, UpdateCardActivity and PurchaseActivty. The image should be added in your project as a resource and the resource ID should be passed like this:
-```Java
-intent.putExtra(ICard.INTENT_EXTRA_CUSTOM_LOGO_RESOURCE, R.drawable.merchang_banner);
+```Kotlin
+ICardDirectSDK.FONT_CAROSSOFT       
+ICardDirectSDK.FONT_CAROSSOFT_LIGHT
+ICardDirectSDK.FONT_LATO           
+ICardDirectSDK.FONT_MONTSERRAT     
+ICardDirectSDK.FONT_OPEN_SANS      
+ICardDirectSDK.FONT_RALEWAY        
+ICardDirectSDK.FONT_ROBOTO_SLAB    
+ICardDirectSDK.FONT_SF_PRO    
 ```
 
-## Configuring displayed colors
 
-Create a new theme that has a theme as a parent, in this example we'll customize the button color:
 
-```Java
-<style name="AppTheme" parent="ICard">
-    <item name="colorButtonNormal">#F68121</item>
-    <item name="colorAccent">@android:color/white</item>
-</style>
-```
-Depending on the styles used in your app, you could customize colors of the following elements:
-  * Field on focus
-  * Hint text in the fields
-  * Entered text colors
-  * Field under line color
-  * Buttons colors
-  
-```Java
-<color name="iCardFocusedColor"       tools:override="true">#ffa500</color>
-<color name="iCardEditTextHintColor"  tools:override="true">#9c9c9c</color>
-<color name="iCardEditTextColor"      tools:override="true">#444444</color>
-<color name="iCardEdtTitleTextColor"  tools:override="true">#bbbbbb</color>
-<color name="iCardUnderlineColor"     tools:override="true">#bbbbbb</color>
-<color name="iCardsButtonColor"       tools:override="true">#008000</color>
-<color name="iCardButtonTextColor"    tools:override="true">#ffffff</color>
-<color name="iCardTitleTextColor"     tools:override="true">#ffffff</color>
-<color name="iCardBackgroundColor"    tools:override="true">#ffffff</color>
-
-```
-
-## Configuring displayed text
-  
-  To provide the best user experience, you could customize strings for all languages you want. When changing text labels, consider using text that gives a clear intention to user actions.
-  
-```Java
-<resources>
-    <string name="app_name"                     tools:override="true">MobilePaymentsSdk</string>
-    <string name="verifying_dots"               tools:override="true">Verifying...</string>
-    <string name="payment"                      tools:override="true">Payment</string>
-    <string name="card_number"                  tools:override="true">Card number</string>
-    <string name="enter_card_number"            tools:override="true">Enter card number</string>
-    <string name="expiry_date"                  tools:override="true">Expiry date</string>
-    <string name="mm_yy"                        tools:override="true">MM/YY</string>
-    <string name="cvc"                          tools:override="true">CVC</string>
-    <string name="enter_cvc_code"               tools:override="true">Enter CVC code</string>
-    <string name="emboss_name"                  tools:override="true">Cardholder name</string>
-    <string name="enter_emboss_name"            tools:override="true">Enter cardholder name</string>
-    <string name="custom_name"                  tools:override="true">Custom name</string>
-    <string name="enter_custom_name"            tools:override="true">Enter custom name</string>
-    <string name="pay"                          tools:override="true">Pay</string>
-    <string name="operation_failed"             tools:override="true">Operation failed</string>
-    <string name="refund"                       tools:override="true">Refund</string>
-    <string name="invalid_card_details"         tools:override="true">Invalid card details</string>
-    <string name="store_new_card"               tools:override="true">Store new card</string>
-    <string name="store_card"                   tools:override="true">Store card</string>
-    <string name="update_stored_card"           tools:override="true">Update stored card</string>
-    <string name="update_card"                  tools:override="true">Update card</string>
-    <string name="invalid_card_pan"             tools:override="true">Invalid PAN</string>
-    <string name="invalid_card_exp_date"        tools:override="true">Invalid expiry date</string>
-    <string name="invalid_card_cvc"             tools:override="true">Invalid CVC</string>
-    <string name="invalid_card_emboss_name"     tools:override="true">Invalid cardholder name</string>
-    <string name="invalid_card_custom_name"     tools:override="true">Invalid custom name</string>
-</resources>
-```
 
