@@ -26,7 +26,8 @@ Accepting mobile payments for merchants
   * [Check transaction status](#check-transaction-status)
   
 * [UI customization](#ui-customization)
- 
+
+* [Enumerators](#enumerators)
   
 # Security and availability
   
@@ -214,7 +215,7 @@ ICardDirectSDK.setupUISettings(
 )
 ```
 
- ## Enumerators
+ # Enumerators
  
  Operation statuses :
  
