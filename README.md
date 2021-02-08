@@ -20,23 +20,13 @@ Accepting mobile payments for merchants
   * [Make a payment and store card](#make-a-payment-and-store-card)
   
   * [Add a Card](#add-a-card)
-  
-  * [Perform a Payment with stored card](#perform-a-payment-with-stored-card)
-  
+   
   * [Perform a Refund](#perform-a-refund)
   
   * [Check transaction status](#check-transaction-status)
   
 * [UI customization](#ui-customization)
-
-  * [Hide custom name field](#hide-custom-name-field)
-  
-  * [Set custom banner](#set-custom-banner)
-
-  * [Configuring displayed colors](#configuring-displayed-colors)
-  
-  * [Configuring displayed text](#configuring-displayed-text)
-  
+ 
   
 # Security and availability
   
@@ -224,7 +214,45 @@ ICardDirectSDK.setupUISettings(
 )
 ```
 
-where the available fonts are
+ ## Enumerators
+ 
+ Operation statuses :
+ 
+ ```Kotlin
+ICardDirectSDK.STATUS_INTERNAL_API_ERROR                      
+ICardDirectSDK.STATUS_COMPLETED_SUCCESSFUL                    
+ICardDirectSDK.STATUS_TECHNICAL_ISSUE_REJECTED_BY_ICARD       
+ICardDirectSDK.STATUS_INVALID_REQUEST_REJECTED_BY_ICARD       
+ICardDirectSDK.STATUS_RISK_ASSESSMENT_REJECTED_BY_ICARD       
+ICardDirectSDK.STATUS_REJECTED_BY_ISSUER                      
+ICardDirectSDK.STATUS_INSUFFICIENT_FUNDS_REJECTED_BY_ISSUER   
+ICardDirectSDK.STATUS_RISK_ASSESSMENT_REJECTED_BY_ISSUER      
+ICardDirectSDK.STATUS_INVALID_CARD_REJECTED_BY_ISSUER         
+ICardDirectSDK.STATUS_INVALID_AMOUNT_REJECTED_BY_ISSUER       
+ICardDirectSDK.STATUS_FAILED_3DS                              
+ICardDirectSDK.STATUS_3DS_USER_INPUT_TIME_OUT                 
+ICardDirectSDK.STATUS_NO_CUSTOMER_INPUT_OR_3DS_RESPONSE       
+ICardDirectSDK.STATUS_CANCELED_BY_THE_CUSTOMER_NO_3DS_RESPONSE
+ICardDirectSDK.STATUS_REVERSED                                
+ICardDirectSDK.STATUS_INTERNAL_ERROR                          
+ICardDirectSDK.STATUS_NOT_FOUND                                  
+```
+
+Card types :
+
+ ```Kotlin
+ICardDirectSDK.CARD_TYPE_MASTERCARD      
+ICardDirectSDK.CARD_TYPE_MAESTRO         
+ICardDirectSDK.CARD_TYPE_VISA            
+ICardDirectSDK.CARD_TYPE_ELECTRON        
+ICardDirectSDK.CARD_TYPE_VPAY            
+ICardDirectSDK.CARD_TYPE_JCB             
+ICardDirectSDK.CARD_TYPE_BAN_CONTACT     
+ICardDirectSDK.CARD_TYPE_AMERICAN_EXPRESS
+ICardDirectSDK.CARD_TYPE_UNION_PAY                                
+```
+
+Fonts :
 
 ```Kotlin
 ICardDirectSDK.FONT_CAROSSOFT       
@@ -236,7 +264,3 @@ ICardDirectSDK.FONT_RALEWAY
 ICardDirectSDK.FONT_ROBOTO_SLAB    
 ICardDirectSDK.FONT_SF_PRO    
 ```
-
-
-
-
