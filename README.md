@@ -79,7 +79,7 @@ Accepting mobile payments for merchants
       ```
   2. Add following code into the Mobile App project configuration in App Build.Gradle
       ```Kotlin
-      implementation 'com.icard.icarddirect:mobilepaymentssdk:1.3.5'  
+      implementation 'com.icard.icarddirect:mobilepaymentssdk:1.4.0'  
       ```
 
   ## Initialization
