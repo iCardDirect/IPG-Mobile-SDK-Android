@@ -79,7 +79,7 @@ Accepting mobile payments for merchants
       ```
   2. Add following code into the Mobile App project configuration in App Build.Gradle
       ```Kotlin
-      implementation 'com.icard.icarddirect:mobilepaymentssdk:1.4.0'  
+      implementation 'com.icard.icarddirect:mobilepaymentssdk:1.4.1'
       ```
 
   ## Initialization
@@ -94,6 +94,14 @@ ICardDirectSDK.initialize(
                             originator        = 33,
                             backendUrl        = "https://callback.url/",
                             taxUrl            = "",
+                            clientDetails     = ClientDetails(
+                                    name                    = "",
+                                    billingAddressCity      = "",
+                                    billingAddressCountry   = "",
+                                    billingAddress          = "",
+                                    emailAddress            = "",
+                                    billingAddressPostCode  = "",
+                                    customerIdentifier      = "" ),
                             keyIndex          = 1,
                             isSandbox         = true 
                             language          = “en”  // Available languages en, bg, de, es, it, nl, ro. Translation is managed by SDK.
