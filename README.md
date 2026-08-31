@@ -109,7 +109,7 @@ ICardDirectSDK.initialize(
 ```
 
 Additional information:
-  * At backendUrl you will be notified about payment status after completion. In body of your HTTP response you should include only the string OK. Otherwise, we will decline the transaction and will generate a reversal. After each method you will find parameters, which you will receive at the backendUrl. For more information about signature verification please visit our documentation [here](https://icard.direct/documents/IPG_API_v3.4_22.pdf).
+  * At backendUrl you will be notified about payment status after completion. In body of your HTTP response you should include only the string OK. Otherwise, we will decline the transaction and will generate a reversal. After each method you will find parameters, which you will receive at the backendUrl. For more information about signature verification please visit our documentation [here](https://icard.direct/account/documents/IPG_API_v3.4_22.pdf).
 
 ## Make a payment with a new or already stored card
     
